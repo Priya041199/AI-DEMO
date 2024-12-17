@@ -1,0 +1,14 @@
+apiVersion: ai.sap.com/v1alpha1
+kind: pipeline
+metadata:
+  name: fetch-supplier-data-pipeline
+spec:
+  entryPoint: main
+  templates:
+    - name: main
+      type: custom
+      spec:
+        runtime: python:3.8
+        entryPoints:
+          main:
+            command: ["python", "fetch_suppliers.py"]
