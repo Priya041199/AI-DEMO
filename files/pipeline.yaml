@@ -15,13 +15,12 @@ spec:
   arguments:
     parameters:
       - name: script-path
-        value: "/workspace/fetch_suppliers.py"
+        value: "fetch_suppliers.py"
   templates:
     - name: main
       container:
         image: python:3.8
         command: ["python"]
-        args: ["{{workflow.parameters.script-path}}"]
         workingDir: /workspace
         resources:
           requests:
