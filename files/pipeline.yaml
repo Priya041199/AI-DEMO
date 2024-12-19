@@ -10,21 +10,19 @@ metadata:
   labels:
     scenarios.ai.sap.com/id: "learning"
     ai.sap.com/version: "1.0"
-spec:
-  entryPoint: main
-  arguments:
-    parameters:
-      - name: script-path
-        value: "fetch_suppliers.py"
-  templates:
-    - name: main
-      type: custom
-      spec:
+  spec:
+    entryPoint: main
+    arguments:
+      parameters:
+        - name: script-path
+          value: "fetch_suppliers.py"
+    templates:
+      - name: main
+        type: custom
         runtime: python:3.8
-        entryPoints:
-          main:
+        main:
             command: ["python", "fetch_suppliers.py"]
-        resources:
-          requests:
+      resources:
+        requests:
             cpu: "1"
             memory: "1Gi"
