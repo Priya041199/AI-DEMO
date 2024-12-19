@@ -2,6 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
   name: fetch-supplier-data-pipeline
+  annotations:
+    scenarios.ai.sap.com/description: "Introduction to SAP AI Core"
+    scenarios.ai.sap.com/name: "NORTHWIND-DEMO"
+    executables.ai.sap.com/description: "Greets the user"
+    executables.ai.sap.com/name: "NORTHWIND Pipeline"
+  labels:
+    scenarios.ai.sap.com/id: "learning"
+    ai.sap.com/version: "1.0"
 spec:
   entryPoint: main
   templates:
