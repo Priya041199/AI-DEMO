@@ -17,7 +17,7 @@ spec:
       container:
         image: python:3.8
         command: ["python"]
-        args: ["fetch_suppliers.py"]
+        args: ["/workspace/fetch_suppliers.py"]
         resources:
           requests:
             cpu: "1"
