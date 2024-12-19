@@ -16,7 +16,7 @@ def fetch_suppliers():
         # Display supplier data
         print("Supplier Data:")
         for supplier in suppliers:
-            print(f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}")
+            print("ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}")
 
     except Exception as e:
         print(f"Error fetching supplier data: {e}")
