@@ -20,5 +20,5 @@ spec:
         args: ["fetch_suppliers.py"]
         resources:
           requests:
-            cpu: "500m"
-            memory: "512Mi"
+            cpu: "1"
+            memory: "1Gi"
