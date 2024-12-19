@@ -12,6 +12,10 @@ metadata:
     ai.sap.com/version: "1.0"
 spec:
   entryPoint: main
+  arguments:
+    parameters:
+      - name: script-path
+        value: "/workspace/fetch_suppliers.py"
   templates:
     - name: main
       container:
