@@ -14,12 +14,10 @@ spec:
   entryPoint: main
   templates:
     - name: main
-      type: custom
-      spec:
-        runtime: python:3.8
-        entryPoints:
-          main:
-            command: ["python", "fetch_suppliers.py"]
+      container:
+        image: python:3.8
+        command: ["python"]
+        args: ["fetch_suppliers.py"]
         resources:
           requests:
             cpu: "500m"
