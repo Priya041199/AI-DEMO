@@ -11,7 +11,7 @@ def fetch_suppliers():
 
         # Parse JSON response
         data = response.json()
-        suppliers = data.get("value", [])
+        suppliers = response.get("value", [])
 
         # Display supplier data
         print("Supplier Data:")
