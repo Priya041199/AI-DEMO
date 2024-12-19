@@ -17,8 +17,15 @@ spec:
       container:
         image: python:3.8
         command: ["python"]
-        args: ["/workspace/fetch_suppliers.py"]
+        args: ["{{workflow.parameters.script-path}}"]
+        workingDir: /workspace
         resources:
           requests:
             cpu: "1"
             memory: "1Gi"
+          volumeMounts:
+          - name: workspace-volume
+            mountPath: /workspace
+  volumes:
+    - name: workspace-volume
+      emptyDir: {}
