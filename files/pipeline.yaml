@@ -11,13 +11,13 @@ metadata:
     scenarios.ai.sap.com/id: "learning"
     ai.sap.com/version: "1.0"
 spec:
-  entryPoint: main
+  entryPoint: mypipeline
   arguments:
     parameters:
       - name: script-path
         value: "/workspace/fetch_suppliers.py"
   templates:
-    - name: main
+    - name: mypipeline
       container:
         image: python:3.8
         command: ["python"]
