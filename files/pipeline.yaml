@@ -1,5 +1,5 @@
-apiVersion: ai.sap.com/v1alpha1
-kind: pipeline
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
 metadata:
   name: fetch-supplier-data-pipeline
 spec:
