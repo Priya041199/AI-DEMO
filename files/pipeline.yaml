@@ -7,6 +7,9 @@ metadata:
     scenarios.ai.sap.com/name: "NORTHWIND-DEMO"
     executables.ai.sap.com/description: "Greets the user"
     executables.ai.sap.com/name: "NORTHWIND Pipeline"
+  labels:
+    scenarios.ai.sap.com/id: "learning"
+    ai.sap.com/version: "1.0"
 spec:
   entryPoint: main
   templates:
