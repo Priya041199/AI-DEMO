@@ -22,10 +22,3 @@ spec:
           requests:
             cpu: "1"
             memory: "1Gi"
-            workingDir: /workspace
-        volumeMounts:
-          - name: workspace-volume
-            mountPath: /workspace
-  volumes:
-    - name: workspace-volume
-      emptyDir: {}
