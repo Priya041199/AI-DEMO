@@ -14,7 +14,6 @@ spec:
   entryPoint: main
   templates:
     - name: main
-      type: custom
       script:
         runtime: python:3.8
         entryPoints:
