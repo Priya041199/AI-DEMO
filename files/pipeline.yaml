@@ -15,7 +15,7 @@ spec:
   templates:
     - name: main
       type: custom
-      spec:
+      script:
         runtime: python:3.8
         entryPoints:
           main:
