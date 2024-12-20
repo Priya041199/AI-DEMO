@@ -11,7 +11,7 @@ metadata:
     scenarios.ai.sap.com/id: "learning"
     ai.sap.com/version: "1.0"
 spec:
-  entryPoint: main
+  entryPoint: fetch-supplier-data-pipeline
   templates:
     - name: main
       script:
