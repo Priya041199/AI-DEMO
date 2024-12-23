@@ -1,5 +1,5 @@
-apiVersion: argoproj.io/v1alpha1
-kind: WorkflowTemplate
+apiVersion: ai.sap.com/v1alpha1
+kind: TaskTemplate
 metadata:
   name: fetch-supplier-data-pipeline
   annotations:
@@ -11,15 +11,12 @@ metadata:
     scenarios.ai.sap.com/id: "learning"
     ai.sap.com/version: "1.0"
 spec:
-  entryPoint: fetch-supplier-data-pipeline
-  templates:
-    - name: fetch-supplier-data-pipeline
-      script:
-        runtime: python:3.8
-        entryPoints:
-          main:
-            command: ["python", "fetch_suppliers.py"]
-        resources:
-          requests:
-            cpu: "1"
-            memory: "1Gi"
+  description: "Fetch and process data from the Northwind service."
+  artifact:
+    type: python
+    reference: fetch_suppliers.py
+  arguments: {}
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
