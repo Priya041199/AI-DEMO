@@ -14,19 +14,15 @@ spec:
   entrypoint: main
   templates:
   - name: main
-    steps:
-    - - name: greet
-        template: greeter
-
-  - name: greeter
     container:
       image: docker.io/python:latest
-      command: ["/bin/sh", "-c"]
+      command:
+        - python3
+        - '-c'
       args:
-        - "python /app/src/fetch_suppliers.py"
-        # - "fetch_suppliers.py"
+        # - "python /app/src/fetch_suppliers.py"
+        - "fetch_suppliers.py"
       resources:
           requests:
             cpu: "1"
             memory: "1Gi"
-          
