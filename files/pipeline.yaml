@@ -19,7 +19,7 @@ spec:
       command:
         - python3
         - '-c'
-    args:
+      args:
         - "python /app/src/fetch_suppliers.py"
         # - "fetch_suppliers.py"
     resources:
