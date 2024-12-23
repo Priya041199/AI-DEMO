@@ -1,5 +1,5 @@
-apiVersion: ai.sap.com/v1alpha1
-kind: TaskTemplate
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
 metadata:
   name: fetch-supplier-data-pipeline
   annotations:
@@ -18,5 +18,5 @@ spec:
   arguments: {}
   resources:
     requests:
-      cpu: 500m
-      memory: 1Gi
+      cpu: "1"
+      memory: "1Gi"
