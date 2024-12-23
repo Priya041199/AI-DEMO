@@ -21,9 +21,8 @@ spec:
   - name: greeter
     container:
       image: docker.io/python:latest
-      command:
-        - python3
-        - '-c'
-      args:
-       - |
-        print("Hello from SAP AI Core")
+      command: ["python", "fetch_suppliers.py"]
+      resources:
+          requests:
+            cpu: "1"
+            memory: "1Gi"
