@@ -21,7 +21,7 @@ spec:
   - name: greeter
     container:
       image: docker.io/python:latest
-      command: ["python", "fetch_suppliers.py"]
+      command: "fetch_suppliers.py"
       resources:
           requests:
             cpu: "1"
