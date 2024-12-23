@@ -16,8 +16,8 @@ spec:
     - name: fetch-supplier-data-pipeline
       script:
         runtime: python:3.8
-        entryPoints:
-          main:
+        entryPoint:
+          fetch-supplier-data-pipeline:
             command: ["python", "fetch_suppliers.py"]
         resources:
           requests:
