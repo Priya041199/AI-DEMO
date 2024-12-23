@@ -26,7 +26,7 @@ spec:
         requests:
         cpu: "1"
         memory: "1Gi"
-    # outputs:
-    #   artifacts:
-    #   - name: supplier-data
-    #     path: /app/src/supplier_data.json
+    outputs:
+      artifacts:
+      - name: supplier-data
+        path: /app/src/supplier_data.json
