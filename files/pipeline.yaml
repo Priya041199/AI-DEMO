@@ -13,7 +13,7 @@ metadata:
 spec:
   entryPoint: fetch-supplier-data-pipeline
   templates:
-    - name: main
+    - name: fetch-supplier-data-pipeline
       script:
         runtime: python:3.8
         entryPoints:
