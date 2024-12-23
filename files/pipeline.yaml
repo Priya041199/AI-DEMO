@@ -16,10 +16,10 @@ spec:
     - name: fetch-supplier-data-pipeline
       script:
         runtime: python:3.8
-        entryPoint:
-          main:
-            command: ["python", "fetch_suppliers.py"]
-        # entrypoint: northwind_processor.py
+        # entryPoint:
+        #   main:
+        #     command: ["python", "fetch_suppliers.py"]
+        entrypoint: northwind_processor.py
         resources:
           requests:
             cpu: "1"
