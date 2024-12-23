@@ -6,7 +6,7 @@ metadata:
 spec:
   description: "Task to fetch and process data from the Northwind OData service."
   runtime:
-    name: python310  # Specify the Python runtime to execute the script
+    name: python:3.8  # Specify the Python runtime to execute the script
   entrypoint: northwind_processor.py  # Specify the main Python file in the repository
   artifact:
     type: git
