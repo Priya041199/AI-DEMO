@@ -15,7 +15,12 @@ spec:
   templates:
   - name: fetch-supplier-data-pipeline
     script:
-        runtime: python:3.8
+      runtime: python:3.8
+    container:
+      image: docker.io/python:latest
+      command:
+        - python3
+        - '-c'
     args:
         # - "python /app/src/fetch_suppliers.py"
         - "fetch_suppliers.py"
