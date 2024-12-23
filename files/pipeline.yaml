@@ -1,25 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: fetch-supplier-data-pipeline
+  name: pipeline12
   annotations:
     scenarios.ai.sap.com/description: "Introduction to SAP AI Core"
-    scenarios.ai.sap.com/name: "NORTHWIND-DEMO"
+    scenarios.ai.sap.com/name: "DEMO-TUTORIAL"
     executables.ai.sap.com/description: "Greets the user"
-    executables.ai.sap.com/name: "NORTHWIND Pipeline"
+    executables.ai.sap.com/name: "Test Pipeline"
   labels:
     scenarios.ai.sap.com/id: "learning"
     ai.sap.com/version: "1.0"
 spec:
-  entryPoint: fetch-supplier-data-pipeline
+  entrypoint: mypipeline
   templates:
-    - name: fetch-supplier-data-pipeline
-      script:
-        runtime: python:3.8
-        entryPoint:
-          fetch-supplier-data-pipeline:
-            command: ["python", "fetch_suppliers.py"]
-        resources:
-          requests:
-            cpu: "1"
-            memory: "1Gi"
+  - name: mypipeline
+    steps:
+    - - name: greet
+        template: greeter
+
+  - name: greeter
+    container:
+      image: docker.io/python:latest
+      command:
+        - python3
+        - '-c'
+      args:
+       - |
+        print("Hello from SAP AI Core")
