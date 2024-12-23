@@ -11,9 +11,9 @@ metadata:
     scenarios.ai.sap.com/id: "learning"
     ai.sap.com/version: "1.0"
 spec:
-  entrypoint: mypipeline
+  entrypoint: main
   templates:
-  - name: mypipeline
+  - name: main
     steps:
     - - name: greet
         template: greeter
