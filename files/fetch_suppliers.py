@@ -1,25 +1,26 @@
-
 import requests
 
-# Define the Northwind OData service endpoint
-NORTHWIND_ENDPOINT = "https://services.odata.org/V3/Northwind/Northwind.svc/Products"
+def fetch_suppliers():
+    # OData Service URL
+    url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
 
-def fetch_data():
-    """Fetch data from the Northwind service."""
-    response = requests.get(NORTHWIND_ENDPOINT, headers={"Accept": "application/json"})
-    if response.status_code == 200:
-        print("Successfully fetched data.")
-        return response.json().get("value", [])
-    else:
-        print(f"Failed to fetch data. Status code: {response.status_code}")
-        response.raise_for_status()
+    try:
+        # Send GET request to fetch supplier data
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an error for HTTP errors
 
-def main():
-    """Main execution."""
-    print("Fetching Northwind data...")
-    products = fetch_data()
-    for product in products[:10]:  # Display the first 10 products
-        print(f"- {product['ProductName']} (${product['UnitPrice']})")
+        # Parse JSON response
+        data = response.json()
+        suppliers = data.get("value", [])
+
+        # Display supplier data
+        print("Supplier Data:")
+        for supplier in suppliers:
+            print("ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}")
+            # print("ID: {supplier[1]}")
+
+    except Exception as e:
+        print(f"Error fetching supplier data: {e}")
 
 if __name__ == "__main__":
-    main()
+    fetch_suppliers()
