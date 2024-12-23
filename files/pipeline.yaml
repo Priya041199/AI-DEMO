@@ -20,9 +20,13 @@ spec:
         - python3
         - '-c'
       args:
-        - "python /app/src/fetch_suppliers.py"
-        # - "fetch_suppliers.py"
+        # - "python /app/src/fetch_suppliers.py"
+        - "fetch_suppliers.py"
     resources:
         requests:
         cpu: "1"
         memory: "1Gi"
+    # outputs:
+    #   artifacts:
+    #   - name: supplier-data
+    #     path: /app/src/supplier_data.json
