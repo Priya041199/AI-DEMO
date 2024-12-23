@@ -23,8 +23,8 @@ spec:
       image: docker.io/python:latest
       command: ["/bin/sh", "-c"]
       args:
-        # - "python /app/src/main.py"
-        - "fetch_suppliers.py"
+        - "python /app/src/fetch_suppliers.py"
+        # - "fetch_suppliers.py"
       resources:
           requests:
             cpu: "1"
