@@ -4,9 +4,9 @@ metadata:
   name: pipeline12
   annotations:
     scenarios.ai.sap.com/description: "Introduction to SAP AI Core"
-    scenarios.ai.sap.com/name: "DEMO-TUTORIAL"
-    executables.ai.sap.com/description: "Greets the user"
-    executables.ai.sap.com/name: "Test Pipeline"
+    scenarios.ai.sap.com/name: "NORTHWIN-AI-SCENE"
+    executables.ai.sap.com/description: "NORTHWIND-SCENE-DESC"
+    executables.ai.sap.com/name: "Test NORTHWIND"
   labels:
     scenarios.ai.sap.com/id: "learning"
     ai.sap.com/version: "1.0"
@@ -20,8 +20,8 @@ spec:
         - python3
         - '-c'
       args:
-        - "python /app/src/fetch_suppliers.py"
-        # - "fetch_suppliers.py"
+        # - "python /app/src/fetch_suppliers.py"
+        - "fetch_suppliers.py"
       resources:
           requests:
             cpu: "1"
