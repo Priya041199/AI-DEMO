@@ -19,7 +19,7 @@ spec:
         # entryPoint:
         #   main:
         #     command: ["python", "fetch_suppliers.py"]
-        entrypoint: northwind_processor.py
+        entrypoint: fetch_suppliers.py
         resources:
           requests:
             cpu: "1"
