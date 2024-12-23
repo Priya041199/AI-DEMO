@@ -11,18 +11,15 @@ metadata:
     scenarios.ai.sap.com/id: "learning"
     ai.sap.com/version: "1.0"
 spec:
-  entrypoint: main
+  entrypoint: fetch-supplier-data-pipeline
   templates:
-  - name: main
-    container:
-      image: docker.io/python:latest
-      command:
-        - python3
-        - '-c'
-      args:
+  - name: fetch-supplier-data-pipeline
+    script:
+        runtime: python:3.8
+    args:
         # - "python /app/src/fetch_suppliers.py"
         - "fetch_suppliers.py"
-      resources:
-          requests:
-            cpu: "1"
-            memory: "1Gi"
+    resources:
+        requests:
+        cpu: "1"
+        memory: "1Gi"
