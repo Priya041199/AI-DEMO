@@ -14,8 +14,6 @@ spec:
   entrypoint: fetch-supplier-data-pipeline
   templates:
   - name: fetch-supplier-data-pipeline
-    script:
-      runtime: python:3.8
     container:
       image: docker.io/python:latest
       command:
