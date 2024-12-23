@@ -16,11 +16,11 @@ spec:
     - name: fetch-supplier-data-pipeline
       script:
         runtime: python:3.8
-        entryPoint:
-          main:
-            command: ["python", "fetch_suppliers.py"]
+  entryPoint:
+    main:
+      command: ["python", "fetch_suppliers.py"]
         # entrypoint: fetch_suppliers.py
-        resources:
-          requests:
-            cpu: "1"
-            memory: "1Gi"
+  resources:
+    requests:
+      cpu: "1"
+      memory: "1Gi"
