@@ -1,4 +1,4 @@
-import requests
+# import requests
 
 def fetch_suppliers():
     # OData Service URL
@@ -6,12 +6,18 @@ def fetch_suppliers():
 
     try:
         # Send GET request to fetch supplier data
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an error for HTTP errors
+        # response = requests.get(url)
+        # response.raise_for_status()  # Raise an error for HTTP errors
 
         # Parse JSON response
-        data = response.json()
-        suppliers = data.get("value", [])
+        # data = response.json()
+        data = [
+            {"SupplierID": 1, 
+            "CompanyName": "23456", 
+            "Country": "UK"}
+        ]
+        # suppliers = data.get("value", [])
+        suppliers = data
 
         # Display supplier data
         print("Supplier Data:")
