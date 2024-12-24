@@ -20,6 +20,11 @@ spec:
         volumeMounts:
           - name: script-volume
             mountPath: /mnt/scripts
+      outputs:
+        parameters:
+          - name: supplier-output
+            valueFrom:
+              path: /tmp/supplier-output.txt
       volumes:
         - name: script-volume
           configMap:
