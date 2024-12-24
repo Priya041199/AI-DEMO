@@ -59,10 +59,10 @@ spec:
       #     - name: supplier-output
       #       valueFrom:
       #         path: /tmp/supplier-output.txt
-  #     volumeMounts:
-  #       - name: script-volume
-  #         mountPath: /mnt/scripts
-  # volumes:
-  #   - name: script-volume
-  #     configMap:
-  #       name: fetch-suppliers-script
+      volumeMounts:
+        - name: script-volume
+          mountPath: /mnt/scripts
+  volumes:
+    - name: script-volume
+      configMap:
+        name: fetch-suppliers-script
