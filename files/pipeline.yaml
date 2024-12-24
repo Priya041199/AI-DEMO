@@ -15,8 +15,8 @@ spec:
   templates:
     - name: fetch-supplier-data-pipeline
       script:
-        image: python:3.8-slim
-        command: ["sh", "-c"]
+        image: python:3.8
+        command: ["python"]
         source: |
           set -e  # Exit immediately if a command exits with a non-zero status
           pip install requests && python - <<EOF
