@@ -52,13 +52,13 @@ spec:
 
           if __name__ == "__main__":
               fetch_suppliers()
-          EOF
+          # EOF
           # print("fetch_suppliers.py")
-      outputs:
-        parameters:
-          - name: supplier-output
-            valueFrom:
-              path: /tmp/supplier-output.txt
+      # outputs:
+      #   parameters:
+      #     - name: supplier-output
+      #       valueFrom:
+      #         path: /tmp/supplier-output.txt
   #     volumeMounts:
   #       - name: script-volume
   #         mountPath: /mnt/scripts
