@@ -22,7 +22,8 @@ spec:
       args:
         - |
          # "python /app/src/fetch_suppliers.py"
-         "fetch_suppliers.py"
+         # "fetch_suppliers.py"
+         pwd
        # - | 
        #    import os 
        #    dir_path = os.path.dirname(os.path.realpath(__file__))
