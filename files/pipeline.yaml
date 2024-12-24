@@ -35,12 +35,14 @@ spec:
                   # Parse JSON response
                   data = response.json()
                   suppliers = data.get("value", [])
-                  # suppliers = data
 
                   # Display supplier data
                   print("Supplier Data:")
-                  for supplier in suppliers:
-                      print(f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}")
+                  with open('/tmp/supplier-output.txt', 'w') as f:
+                    for supplier in suppliers:
+                          output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
+                          print(output)
+                          f.write(output)
 
               except Exception as e:
                   print(f"Error fetching supplier data: {e}")
@@ -49,10 +51,15 @@ spec:
               fetch_suppliers()
           EOF
           # print("fetch_suppliers.py")
-  #     volumeMounts:
-  #       - name: script-volume
-  #         mountPath: /mnt/scripts
-  # volumes:
-  #   - name: script-volume
-  #     configMap:
-  #       name: fetch-suppliers-script
+      outputs:
+        parameters:
+          - name: supplier-output
+            valueFrom:
+              path: /tmp/supplier-output.txt
+      volumeMounts:
+        - name: script-volume
+          mountPath: /mnt/scripts
+  volumes:
+    - name: script-volume
+      configMap:
+        name: fetch-suppliers-script
