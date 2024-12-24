@@ -45,6 +45,7 @@ spec:
 
           if __name__ == "__main__":
               fetch_suppliers()
+          EOF
           # print("fetch_suppliers.py")
       volumeMounts:
         - name: script-volume
