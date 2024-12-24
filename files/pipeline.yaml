@@ -16,10 +16,9 @@ spec:
     - name: fetch-supplier-data-pipeline
       script:
         image: python:3.8-slim
-        command: ["python"]
+        command: ["sh", "-c"]
         source: |
-          pip install requests
-          python - <<EOF
+          pip install requests && python - <<EOF
           import requests
 
           def fetch_suppliers():
