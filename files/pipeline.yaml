@@ -19,11 +19,14 @@ spec:
         command: ["sh", "-c"]
         source: |
           set -e  # Exit immediately if a command exits with a non-zero status
-          pip install requests 
-          python - <<EOF
+          pip install requests && python - <<EOF
+          import os
           import requests
 
           def fetch_suppliers():
+          
+              os.makedirs('/tmp', exist_ok=True)
+              
               # OData Service URL
               url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
 
@@ -56,10 +59,10 @@ spec:
           - name: supplier-output
             valueFrom:
               path: /tmp/supplier-output.txt
-      volumeMounts:
-        - name: script-volume
-          mountPath: /mnt/scripts
-  volumes:
-    - name: script-volume
-      configMap:
-        name: fetch-suppliers-script
+  #     volumeMounts:
+  #       - name: script-volume
+  #         mountPath: /mnt/scripts
+  # volumes:
+  #   - name: script-volume
+  #     configMap:
+  #       name: fetch-suppliers-script
