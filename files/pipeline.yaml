@@ -16,7 +16,7 @@ spec:
     - name: fetch-supplier-data-pipeline
       script:
         image: python:3.8-slim
-        command: ["sh", "-c"]
+        command: ["python"]
         source: |
           pip install requests
           python - <<EOF
