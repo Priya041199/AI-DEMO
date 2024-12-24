@@ -36,4 +36,4 @@ spec:
     outputs:
       artifacts:
       - name: supplier-data
-        path: /app/src/supplier_data.json
+        path: fetch_suppliers.py
