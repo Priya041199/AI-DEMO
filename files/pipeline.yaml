@@ -1,39 +1,39 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: pipeline12
+  name: fetch-supplier-data-pipeline
   annotations:
     scenarios.ai.sap.com/description: "Introduction to SAP AI Core"
-    scenarios.ai.sap.com/name: "NORTHWIN-AI-SCENE"
-    executables.ai.sap.com/description: "NORTHWIND-SCENE-DESC"
-    executables.ai.sap.com/name: "Test NORTHWIND"
+    scenarios.ai.sap.com/name: "NORTHWIND-DEMO"
+    executables.ai.sap.com/description: "Fetches supplier data from Northwind service"
+    executables.ai.sap.com/name: "NORTHWIND Pipeline"
   labels:
     scenarios.ai.sap.com/id: "learning"
     ai.sap.com/version: "1.0"
 spec:
   entrypoint: fetch-supplier-data-pipeline
   templates:
-  - name: fetch-supplier-data-pipeline
-    container:
-      image: docker.io/python:latest
-      command:
-        - python3
-        - '-c'
-      args:
-        - |
-         # "python /app/src/fetch_suppliers.py"
-         # "fetch_suppliers.py"
-         pwd
-       # - | 
-       #    import os 
-       #    dir_path = os.path.dirname(os.path.realpath(__file__))
-       # - |
-       #  print("Hello World")
-    resources:
+    - name: fetch-supplier-data-pipeline
+      script:
+        name: fetch-suppliers
+        image: python:3.8  # Docker image for the script runtime
+        command: ["python"]
+        source: |
+          import requests
+
+          NORTHWIND_ENDPOINT = "https://services.odata.org/V3/Northwind/Northwind.svc/Suppliers"
+
+          def fetch_suppliers():
+              response = requests.get(NORTHWIND_ENDPOINT)
+              if response.status_code == 200:
+                  print("Fetched suppliers:")
+                  print(response.json())
+              else:
+                  print(f"Failed to fetch suppliers: {response.status_code}")
+
+          if __name__ == "__main__":
+              fetch_suppliers()
+      resources:
         requests:
-        cpu: "1"
-        memory: "1Gi"
-    outputs:
-      artifacts:
-      - name: supplier-data
-        path: fetch_suppliers.py
+          cpu: "1"
+          memory: "1Gi"
