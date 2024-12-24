@@ -15,26 +15,12 @@ spec:
   templates:
     - name: fetch-supplier-data-pipeline
       script:
-        name: fetch-suppliers
-        image: python:3.8  # Docker image for the script runtime
-        command: ["python"]
-        source: |
-          # import requests
-
-          # NORTHWIND_ENDPOINT = "https://services.odata.org/V3/Northwind/Northwind.svc/Suppliers"
-
-          # def fetch_suppliers():
-          #     response = requests.get(NORTHWIND_ENDPOINT)
-          #     if response.status_code == 200:
-          #         print("Fetched suppliers:")
-          #         print(response.json())
-          #     else:
-          #         print(f"Failed to fetch suppliers: {response.status_code}")
-
-          # if __name__ == "__main__":
-          #     fetch_suppliers()
-          python fetch_suppliers.py
-      resources:
-        requests:
-          cpu: "1"
-          memory: "1Gi"
+        image: python:3.8
+        command: ["python", "/mnt/scripts/fetch_suppliers.py"]
+        volumeMounts:
+          - name: script-volume
+            mountPath: /mnt/scripts
+      volumes:
+        - name: script-volume
+          configMap:
+            name: fetch-suppliers-script
