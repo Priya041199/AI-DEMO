@@ -18,6 +18,8 @@ spec:
         image: python:3.8
         command: ["python"]
         source: |
+          pip install requests
+          python - <<EOF
           import requests
 
           def fetch_suppliers():
