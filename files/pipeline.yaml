@@ -16,7 +16,7 @@ spec:
     - name: fetch-supplier-data-pipeline
       script:
         image: python:3.8
-        command: ["python", "/mnt/scripts/fetch_suppliers.py"]
+        command: ["python", "fetch_suppliers.py"]
         volumeMounts:
           - name: script-volume
             mountPath: /mnt/scripts
