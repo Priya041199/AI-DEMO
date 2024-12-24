@@ -18,18 +18,38 @@ spec:
         image: python:3.8
         command: ["python"]
         source: |
-          import os
-          import sys
+          # import requests
 
-          # Ensure the /tmp directory exists
-          if not os.path.exists('/tmp'):
-              os.makedirs('/tmp')
+def fetch_suppliers():
+    # OData Service URL
+    url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
 
-          # Simulate fetching supplier data and writing to a file
-          supplier_data = "Supplier data from Northwind service"
-          with open('/tmp/supplier-output.txt', 'w') as f:
-              f.write(supplier_data)
-          print("Supplier data fetched and written to /tmp/supplier-output.txt")
+    try:
+        # Send GET request to fetch supplier data
+        # response = requests.get(url)
+        # response.raise_for_status()  # Raise an error for HTTP errors
+
+        # Parse JSON response
+        # data = response.json()
+        data = [
+            {"SupplierID": 1, 
+            "CompanyName": "23456", 
+            "Country": "UK"}
+        ]
+        # suppliers = data.get("value", [])
+        suppliers = data
+
+        # Display supplier data
+        print("Supplier Data:")
+        for supplier in suppliers:
+            print("ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}")
+            # print("ID: {supplier[1]}")
+
+    except Exception as e:
+        print(f"Error fetching supplier data: {e}")
+
+    if __name__ == "__main__":
+    fetch_suppliers()
       volumeMounts:
         - name: script-volume
           mountPath: /mnt/scripts
