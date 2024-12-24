@@ -23,35 +23,35 @@ spec:
           import os
           import requests
 
-          def fetch_suppliers():
+          # def fetch_suppliers():
           
               # os.makedirs('/tmp', exist_ok=True)
               
               # OData Service URL
-              url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
+          url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
 
-              try:
-                  # Send GET request to fetch supplier data
-                  response = requests.get(url)
-                  response.raise_for_status()  # Raise an error for HTTP errors
+          # try:
+              # Send GET request to fetch supplier data
+          response = requests.get(url)
+          response.raise_for_status()  # Raise an error for HTTP errors
 
-                  # Parse JSON response
-                  data = response.json()
-                  suppliers = data.get("value", [])
+          # Parse JSON response
+          data = response.json()
+          suppliers = data.get("value", [])
 
-                  # Display supplier data
-                  print("Supplier Data:")
-                  # with open('/tmp/supplier-output.txt', 'w') as f:
-                  for supplier in suppliers:
-                        output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
-                        print(output)
-                        # f.write(output)
+          # Display supplier data
+          print("Supplier Data:")
+          # with open('/tmp/supplier-output.txt', 'w') as f:
+          for supplier in suppliers:
+              output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
+              print(output)
+                  # f.write(output)
 
-              except Exception as e:
-                  print(f"Error fetching supplier data: {e}")
+            # except Exception as e:
+            #     print(f"Error fetching supplier data: {e}")
 
-          if __name__ == "__main__":
-              fetch_suppliers()
+        # if __name__ == "__main__":
+        #     fetch_suppliers()
           # EOF
           # print("fetch_suppliers.py")
       # outputs:
