@@ -21,8 +21,8 @@ spec:
         - '-c'
       args:
         - |
-         "python /app/src/fetch_suppliers.py"
-        # - "fetch_suppliers.py"
+         # "python /app/src/fetch_suppliers.py"
+         "fetch_suppliers.py"
        # - | 
        #    import os 
        #    dir_path = os.path.dirname(os.path.realpath(__file__))
