@@ -60,11 +60,11 @@ spec:
         if __name__ == "__main__":
             fetch_suppliers()
           EOF
-      outputs:
-        parameters:
-          - name: supplier-output
-            valueFrom:
-              path: /argo/outputs/supplier-output.txt
+      # outputs:
+      #   parameters:
+      #     - name: supplier-output
+      #       valueFrom:
+      #         path: /argo/outputs/supplier-output.txt
       # volumeMounts:
   #       - name: script-volume
   #         mountPath: /mnt/scripts
