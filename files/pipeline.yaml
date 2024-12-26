@@ -16,16 +16,17 @@ spec:
     - name: fetch-supplier-data-pipeline
       script:
         image: python:3.8-slim
-        command: ["sh", "-c"]
+        command: ["/bin/bash", "-c"]
         source: |
           set -e  # Exit immediately if a command exits with a non-zero status
           # mkdir -p /tmp
-          pip install requests && python - <<EOF
+          pip install requests
+          python - <<EOF
           import os
           import requests
 
           def fetch_suppliers():
-              # os.makedirs('/tmp', exist_ok=True)
+              os.makedirs('/argo/outputs', exist_ok=True)
               
               # OData Service URL
               url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
