@@ -20,6 +20,7 @@ spec:
         source: |
           set -e  # Exit immediately if a command exits with a non-zero status
           mkdir -p /argo/outputs
+          chmod 777 /argo/outputs
           pip install requests
           python - <<EOF
           import os
@@ -42,11 +43,11 @@ spec:
         
                   # Display supplier data
                   print("Supplier Data:")
-                  # with open('/argo/outputs/supplier-output.txt', 'w') as f:
+                  with open('/argo/outputs/supplier-output.txt', 'w') as f:
                       for supplier in suppliers:
                           output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
                           print(output)
-                          # f.write(output)
+                          f.write(output)
               except requests.exceptions.RequestException as e:
                   print(f"HTTP error occurred: {e}")
               except ValueError as e:
