@@ -23,9 +23,8 @@ spec:
           import os
           import requests
 
-          # def fetch_suppliers():
-          
-              # os.makedirs('/tmp', exist_ok=True)
+          def fetch_suppliers():
+              os.makedirs('/tmp', exist_ok=True)
               
               # OData Service URL
           url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
@@ -41,28 +40,28 @@ spec:
 
           # Display supplier data
           print("Supplier Data:")
-          # with open('/tmp/supplier-output.txt', 'w') as f:
+          with open('/tmp/supplier-output.txt', 'w') as f:
           for supplier in suppliers:
               output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
               print(output)
                   # f.write(output)
 
-            # except Exception as e:
-            #     print(f"Error fetching supplier data: {e}")
+            except Exception as e:
+                print(f"Error fetching supplier data: {e}")
 
-        # if __name__ == "__main__":
-        #     fetch_suppliers()
-          # EOF
+        if __name__ == "__main__":
+            fetch_suppliers()
+          EOF
           # print("fetch_suppliers.py")
-      # outputs:
-      #   parameters:
-      #     - name: supplier-output
-      #       valueFrom:
-      #         path: /tmp/supplier-output.txt
-      volumeMounts:
-        - name: script-volume
-          mountPath: /mnt/scripts
-  volumes:
-    - name: script-volume
-      configMap:
-        name: fetch-suppliers-script
+      outputs:
+        parameters:
+          - name: supplier-output
+            valueFrom:
+              path: /tmp/supplier-output.txt
+  #     volumeMounts:
+  #       - name: script-volume
+  #         mountPath: /mnt/scripts
+  # volumes:
+  #   - name: script-volume
+  #     configMap:
+  #       name: fetch-suppliers-script
