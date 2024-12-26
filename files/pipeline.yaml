@@ -41,7 +41,7 @@ spec:
 
           # Display supplier data
           print("Supplier Data:")
-          with open('/tmp/supplier-output.txt', 'w') as f:
+          # with open('/tmp/supplier-output.txt', 'w') as f:
           for supplier in suppliers:
               output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
               print(output)
@@ -54,11 +54,11 @@ spec:
             fetch_suppliers()
           EOF
           # print("fetch_suppliers.py")
-      outputs:
-        parameters:
-          - name: supplier-output
-            valueFrom:
-              path: /tmp/supplier-output.txt
+      # outputs:
+      #   parameters:
+      #     - name: supplier-output
+      #       valueFrom:
+      #         path: /tmp/supplier-output.txt
   #     volumeMounts:
   #       - name: script-volume
   #         mountPath: /mnt/scripts
