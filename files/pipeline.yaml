@@ -41,7 +41,7 @@ spec:
         
                   # Display supplier data
                   print("Supplier Data:")
-                  with open('/argo/outputs/supplier-output.txt', 'w') as f:
+                  # with open('/argo/outputs/supplier-output.txt', 'w') as f:
                       for supplier in suppliers:
                           output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
                           print(output)
