@@ -46,7 +46,7 @@ spec:
                       for supplier in suppliers:
                           output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
                           print("output")
-                              # f.write(output)
+                          f.write(output)
               except requests.exceptions.RequestException as e:
                   print(f"HTTP error occurred: {e}")
               except ValueError as e:
