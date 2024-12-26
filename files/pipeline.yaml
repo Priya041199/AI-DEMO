@@ -19,6 +19,7 @@ spec:
         command: ["sh", "-c"]
         source: |
           set -e  # Exit immediately if a command exits with a non-zero status
+          mkdir -p /tmp
           pip install requests && python - <<EOF
           import os
           import requests
