@@ -19,7 +19,7 @@ spec:
         command: ["/bin/bash", "-c"]
         source: |
           set -e  # Exit immediately if a command exits with a non-zero status
-          # mkdir -p /tmp
+          mkdir -p /argo/outputs
           pip install requests
           python - <<EOF
           import os
