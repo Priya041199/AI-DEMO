@@ -41,15 +41,20 @@ spec:
         
                   # Display supplier data
                   print("Supplier Data:")
-                  # with open('/argo/outputs/supplier-output.txt', 'w') as f:
+                  with open('/argo/outputs/supplier-output.txt', 'w') as f:
                       for supplier in suppliers:
                           output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
-                          print(output)
+                          print("output")
                               # f.write(output)
-
+              except requests.exceptions.RequestException as e:
+                  print(f"HTTP error occurred: {e}")
+              except ValueError as e:
+                  print(f"Error parsing JSON: {e}")
+              except KeyError as e:
+                  print(f"Unexpected data format: {e}")
               except Exception as e:
-                  print(f"Error fetching supplier data: {e}")
-
+                  print(f"An error occurred: {e}")
+                  
         if __name__ == "__main__":
             fetch_suppliers()
           EOF
