@@ -77,7 +77,7 @@ spec:
 
           # # Debugging step: List contents of /argo/outputs directory
           # echo "Contents of /argo/outputs directory:"
-          ls -l /argo/outputs
+          # ls -l /argo/outputs
       outputs:
         parameters:
           - name: supplier-output
