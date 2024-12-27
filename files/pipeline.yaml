@@ -25,6 +25,9 @@ spec:
           echo "Directory /argo/outputs created and permissions set."
           echo "Installing requests library..."
           pip install requests
+          echo "requests library installed."
+          
+          echo "Running Python script..."
           python - <<EOF
           import os
           import requests
