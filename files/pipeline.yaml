@@ -19,6 +19,10 @@ spec:
         command: ["/bin/bash", "-c"]
         source: |
           set -e  # Exit immediately if a command exits with a non-zero status
+          echo "Current directory and contents:"
+          pwd
+          ls -l
+          
           echo "Creating /argo/outputs directory..."
           mkdir -p /argo/outputs
           chmod 777 /argo/outputs
@@ -69,6 +73,11 @@ spec:
         if __name__ == "__main__":
             fetch_suppliers()
           EOF
+          echo "Python script finished."
+
+          # Debugging step: List contents of /argo/outputs directory
+          echo "Contents of /argo/outputs directory:"
+          ls -l /argo/outputs
       outputs:
         parameters:
           - name: supplier-output
