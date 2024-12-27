@@ -19,8 +19,11 @@ spec:
         command: ["/bin/bash", "-c"]
         source: |
           set -e  # Exit immediately if a command exits with a non-zero status
+          echo "Creating /argo/outputs directory..."
           mkdir -p /argo/outputs
           chmod 777 /argo/outputs
+          echo "Directory /argo/outputs created and permissions set."
+          echo "Installing requests library..."
           pip install requests
           python - <<EOF
           import os
@@ -28,6 +31,7 @@ spec:
 
           def fetch_suppliers():
               os.makedirs('/argo/outputs', exist_ok=True)
+              print("Directory /argo/outputs confirmed to exist.")
               
               # OData Service URL
               url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
@@ -48,6 +52,8 @@ spec:
                           output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
                           print(output)
                           f.write(output)
+                  print("Data written to /argo/outputs/supplier-output.txt.")
+                  
               except requests.exceptions.RequestException as e:
                   print(f"HTTP error occurred: {e}")
               except ValueError as e:
