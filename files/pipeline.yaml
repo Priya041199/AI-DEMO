@@ -73,11 +73,11 @@ spec:
         if __name__ == "__main__":
             fetch_suppliers()
           EOF
-          # echo "Python script finished."
+          echo "Python script finished."
 
-          # # Debugging step: List contents of /argo/outputs directory
-          # echo "Contents of /argo/outputs directory:"
-          # ls -l /argo/outputs
+          # Debugging step: List contents of /argo/outputs directory
+          echo "Contents of /argo/outputs directory:"
+          ls -l /argo/outputs
       outputs:
         parameters:
           - name: supplier-output
