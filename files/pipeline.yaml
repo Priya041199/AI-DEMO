@@ -28,7 +28,7 @@ spec:
           # chmod 777 /argo/outputs
           # echo "Directory /argo/outputs created and permissions set."
           # echo "Installing requests library..."
-          # pip install requests
+          pip install requests && python - <<EOF
           # echo "requests library installed."
           
           # echo "Running Python script..."
