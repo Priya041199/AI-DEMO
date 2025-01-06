@@ -16,25 +16,25 @@ spec:
     - name: fetch-supplier-data-pipeline
       script:
         image: python:3.8-slim
-        command: ["/bin/bash", "-c"]
+        command: ["sh", "-c"]
         source: |
-          set -e  # Exit immediately if a command exits with a non-zero status
-          echo "Current directory and contents:"
-          pwd
-          ls -l
+          # set -e  # Exit immediately if a command exits with a non-zero status
+          # echo "Current directory and contents:"
+          # pwd
+          # ls -l
           
-          echo "Creating /argo/outputs directory..."
-          mkdir -p /argo/outputs
-          chmod 777 /argo/outputs
-          echo "Directory /argo/outputs created and permissions set."
-          echo "Installing requests library..."
-          pip install requests
-          echo "requests library installed."
+          # echo "Creating /argo/outputs directory..."
+          # mkdir -p /argo/outputs
+          # chmod 777 /argo/outputs
+          # echo "Directory /argo/outputs created and permissions set."
+          # echo "Installing requests library..."
+          # pip install requests
+          # echo "requests library installed."
           
-          echo "Running Python script..."
-          python - <<EOF
-          import os
-          import requests
+          # echo "Running Python script..."
+          # python - <<EOF
+          # import os
+          # import requests
 
           def fetch_suppliers():
               os.makedirs('/argo/outputs', exist_ok=True)
