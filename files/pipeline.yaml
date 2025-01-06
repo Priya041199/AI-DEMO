@@ -36,29 +36,29 @@ spec:
           # import os
           import requests
 
-          def fetch_suppliers():
-              # os.makedirs('/argo/outputs', exist_ok=True)
-              # print("Directory /argo/outputs confirmed to exist.")
+          # def fetch_suppliers():
+          #     # os.makedirs('/argo/outputs', exist_ok=True)
+          #     # print("Directory /argo/outputs confirmed to exist.")
               
-              # OData Service URL
-              url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
+          #     # OData Service URL
+          #     url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
     
-              try:
-                  # Send GET request to fetch supplier data
-                  response = requests.get(url)
-                  response.raise_for_status()  # Raise an error for HTTP errors
+          #     try:
+          #         # Send GET request to fetch supplier data
+          #         response = requests.get(url)
+          #         response.raise_for_status()  # Raise an error for HTTP errors
         
-                  # Parse JSON response
-                  data = response.json()
-                  suppliers = data.get("value", [])
+          #         # Parse JSON response
+          #         data = response.json()
+          #         suppliers = data.get("value", [])
         
-                  # Display supplier data
-                  print("Supplier Data:")
-                  with open('/argo/outputs/supplier-output.txt', 'w') as f:
-                      for supplier in suppliers:
-                          # output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
-                          print(output)
-                          f.write(output)
+          #         # Display supplier data
+          #         print("Supplier Data:")
+          #         with open('/argo/outputs/supplier-output.txt', 'w') as f:
+          #             for supplier in suppliers:
+          #                 # output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
+          #                 print(output)
+          #                 f.write(output)
                   print("Hello World")
                   
               except requests.exceptions.RequestException as e:
