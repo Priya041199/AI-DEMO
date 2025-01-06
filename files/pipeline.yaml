@@ -78,15 +78,15 @@ spec:
           # # Debugging step: List contents of /argo/outputs directory
           # echo "Contents of /argo/outputs directory:"
           # ls -l /argo/outputs
-      outputs:
-        parameters:
-          - name: supplier-output
-            valueFrom:
-              path: /argo/outputs/supplier-output.txt
-      # volumeMounts:
-  #       - name: script-volume
-  #         mountPath: /mnt/scripts
-  # volumes:
-  #   - name: script-volume
-  #     configMap:
-  #       name: fetch-suppliers-script
+      # outputs:
+      #   parameters:
+      #     - name: supplier-output
+      #       valueFrom:
+      #         path: /argo/outputs/supplier-output.txt
+      volumeMounts:
+        - name: script-volume
+          mountPath: /mnt/scripts
+  volumes:
+    - name: script-volume
+      configMap:
+        name: fetch-suppliers-script
