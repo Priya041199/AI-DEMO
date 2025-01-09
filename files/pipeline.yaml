@@ -6,92 +6,24 @@ metadata:
     scenarios.ai.sap.com/description: "Introduction to SAP AI Core"
     scenarios.ai.sap.com/name: "NORTHWIND-DEMO"
     executables.ai.sap.com/description: "Fetches supplier data from Northwind service"
-    executables.ai.sap.com/name: "NORTHWIND Pipeline"
+    executables.ai.sap.com/name: "Test Pipeline"
   labels:
     scenarios.ai.sap.com/id: "learning"
     ai.sap.com/version: "1.0"
 spec:
-  entrypoint: fetch-supplier-data
+  entrypoint: mypipeline
   templates:
-    - name: fetch-supplier-data
-      script:
-        image: python:3.8-slim
-        command: ["/bin/bash", "-c"]
-        source: |
-          set -e  # Exit immediately if a command exits with a non-zero status
+  - name: mypipeline
+    steps:
+    - - name: greet
+        template: greeter
 
-          # Debugging step: Print current directory and list contents
-          echo "Current directory and contents:"
-          pwd
-          ls -l
-
-          # Create the /argo/outputs directory
-          echo "Creating /argo/outputs directory..."
-          mkdir -p /argo/outputs
-          chmod 777 /argo/outputs  # Set permissions to allow writing
-          echo "Directory /argo/outputs created and permissions set."
-
-          # Debugging step: List contents of /argo directory
-          echo "Contents of /argo directory:"
-          ls -l /argo
-
-          # Install necessary Python package
-          echo "Installing requests library..."
-          pip install requests
-          echo "requests library installed."
-
-          # Running Python script to fetch and write data
-          echo "Running Python script..."
-          python - <<EOF
-          import os
-          import requests
-
-          def fetch_suppliers():
-              # Ensure the /argo/outputs directory exists
-              os.makedirs('/argo/outputs', exist_ok=True)
-              print("Directory /argo/outputs confirmed to exist.")
-              
-              # OData Service URL
-              url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
-
-              try:
-                  # Send GET request to fetch supplier data
-                  response = requests.get(url)
-                  response.raise_for_status()  # Raise an error for HTTP errors
-
-                  # Parse JSON response
-                  data = response.json()
-                  suppliers = data.get("value", [])
-
-                  # Display supplier data and write to a file
-                  print("Supplier Data:")
-                  with open('/argo/outputs/supplier-output.txt', 'w') as f:
-                      for supplier in suppliers:
-                          output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
-                          print(output)
-                          f.write(output)
-                  print("Data written to /argo/outputs/supplier-output.txt.")
-
-              except requests.exceptions.RequestException as e:
-                  print(f"HTTP error occurred: {e}")
-              except ValueError as e:
-                  print(f"Error parsing JSON: {e}")
-              except KeyError as e:
-                  print(f"Unexpected data format: {e}")
-              except Exception as e:
-                  print(f"An error occurred: {e}")
-
-          if __name__ == "__main__":
-              fetch_suppliers()
-          EOF
-          echo "Python script finished."
-
-          # Debugging step: List contents of /argo/outputs directory
-          echo "Contents of /argo/outputs directory:"
-          ls -l /argo/outputs
-
-      outputs:
-        parameters:
-          - name: supplier-output
-            valueFrom:
-              path: /argo/outputs/supplier-output.txt
+  - name: greeter
+    container:
+      image: docker.io/python:latest
+      command:
+        - python3
+        - '-c'
+      args:
+       - |
+        print("Hello World")
