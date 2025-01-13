@@ -11,51 +11,68 @@ metadata:
     scenarios.ai.sap.com/id: "learning"
     ai.sap.com/version: "1.0"
 spec:
-  entrypoint: fetch-supplier-data-pipeline
+  entrypoint: fetch-supplier-data
   templates:
-    - name: fetch-supplier-data-pipeline
+    - name: fetch-supplier-data
       script:
-        image: python:3.8
-        command: ["python"]
+        image: python:3.8-slim
+        command: ["/bin/bash", "-c"]
         source: |
-          # import requests
+          set -e  # Exit immediately if a command exits with a non-zero status
+
+          mkdir -p /data/output
+          echo "Installing dependencies from requirements.txt..."
+          pip install -r /path/AI-DEMO/files/requirements.txt
+          
+          echo "Dependencies installed."
+          pip install requests
+
+          python - <<EOF
+          import os
+          import requests
 
           def fetch_suppliers():
+              # Ensure the /argo/outputs directory exists
+              # os.makedirs('/data/output', exist_ok=True)
+              # print("Directory /argo/outputs confirmed to exist.")
+              
               # OData Service URL
               url = "https://services.odata.org/northwind/northwind.svc/Suppliers?$format=json"
 
               try:
                   # Send GET request to fetch supplier data
-                  # response = requests.get(url)
-                  # response.raise_for_status()  # Raise an error for HTTP errors
+                  response = requests.get(url)
+                  response.raise_for_status()  # Raise an error for HTTP errors
 
                   # Parse JSON response
-                  # data = response.json()
-                  data = [
-                      {"SupplierID": 1, "CompanyName": "23456", "Country": "UK"}
-                  ]
-                  # suppliers = data.get("value", [])
-                  suppliers = data
+                  data = response.json()
+                  suppliers = data.get("value", [])
 
-                  # Display supplier data
+                  # Display supplier data and write to a file
                   print("Supplier Data:")
-                  for supplier in suppliers:
-                      print(f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}")
+                  with open('/path/AI-DEMO/files/requirements.txt', 'w') as f:
+                      for supplier in suppliers:
+                          output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
+                          print(output)
+                          f.write(output)
+                  print("Data written to /path/AI-DEMO/files/requirements.txt")
 
+              except requests.exceptions.RequestException as e:
+                  print(f"HTTP error occurred: {e}")
+              except ValueError as e:
+                  print(f"Error parsing JSON: {e}")
+              except KeyError as e:
+                  print(f"Unexpected data format: {e}")
               except Exception as e:
-                  print(f"Error fetching supplier data: {e}")
+                  print(f"An error occurred: {e}")
 
           if __name__ == "__main__":
               fetch_suppliers()
-      volumeMounts:
-        - name: script-volume
-          mountPath: /mnt/scripts
+          EOF
+          echo "Python script finished."
+
       outputs:
         parameters:
           - name: supplier-output
             valueFrom:
-              path: requirements.txt
-  volumes:
-    - name: script-volume
-      configMap:
-        name: fetch-suppliers-script
+              path: /path/AI-DEMO/files/requirements.txt
