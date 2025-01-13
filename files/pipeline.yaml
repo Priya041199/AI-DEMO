@@ -92,6 +92,6 @@ spec:
 
       outputs:
         parameters:
-          - name: supplier-output
+          - name: requirements
             valueFrom:
               path: /argo/outputs/requirements.txt
