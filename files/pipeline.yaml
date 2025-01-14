@@ -18,16 +18,16 @@ spec:
         image: python:3.8-slim
         command: ["/bin/bash", "-c"]
         source: |
-          set -e  # Exit immediately if a command exits with a non-zero status
+          # set -e  # Exit immediately if a command exits with a non-zero status
 
-          mkdir -p /data/output
-          echo "Installing dependencies from requirements.txt..."
-          pip install -r /path/AI-DEMO/files/requirements.txt
+          # mkdir -p /data/output
+          # echo "Installing dependencies from requirements.txt..."
+          # pip install -r /path/AI-DEMO/files/requirements.txt
           
-          echo "Dependencies installed."
-          pip install requests
+          # echo "Dependencies installed."
+          # pip install requests
 
-          python - <<EOF
+          # python - <<EOF
           import os
           import requests
 
@@ -50,12 +50,12 @@ spec:
 
                   # Display supplier data and write to a file
                   print("Supplier Data:")
-                  with open('/path/AI-DEMO/files/requirements.txt', 'w') as f:
+                  # with open('/path/AI-DEMO/files/requirements.txt', 'w') as f:
                       for supplier in suppliers:
                           output = f"ID: {supplier['SupplierID']}, Name: {supplier['CompanyName']}, Country: {supplier['Country']}\n"
                           print(output)
-                          f.write(output)
-                  print("Data written to /path/AI-DEMO/files/requirements.txt")
+                          # f.write(output)
+                  # print("Data written to /path/AI-DEMO/files/requirements.txt")
 
               except requests.exceptions.RequestException as e:
                   print(f"HTTP error occurred: {e}")
@@ -69,7 +69,7 @@ spec:
           if __name__ == "__main__":
               fetch_suppliers()
           EOF
-          echo "Python script finished."
+          # echo "Python script finished."
 
       outputs:
         parameters:
